@@ -7,12 +7,14 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('login')
-  login(@Body() loginDto: AuthDto) {
+  public login(@Body() loginDto: AuthDto): Promise<{ access_token: string }> {
     return this.authService.login(loginDto);
   }
 
   @Post('register')
-  register(@Body() registerDto: AuthDto) {
+  public register(
+    @Body() registerDto: AuthDto,
+  ): Promise<{ access_token: string }> {
     return this.authService.register(registerDto);
   }
 }
